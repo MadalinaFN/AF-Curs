@@ -13,7 +13,7 @@ namespace Curs1
         {
             //Palindrom();
             //SumaCifre();
-            DeCateOriApare();
+            //DeCateOriApare();
             PuteriNrPerfectePrime();
             KValoriMari();
         }
