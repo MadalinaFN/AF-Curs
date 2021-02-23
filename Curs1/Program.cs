@@ -12,7 +12,7 @@ namespace Curs1
         static void Main(string[] args)
         {
             //Palindrom();
-            SumaCifre();
+            //SumaCifre();
             DeCateOriApare();
             PuteriNrPerfectePrime();
             KValoriMari();
@@ -30,7 +30,30 @@ namespace Curs1
 
         private static void DeCateOriApare()
         {
-            
+            int n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+
+            for (int i = 0; i < n; i++)
+            {
+                v[i] = int.Parse(Console.ReadLine());
+                //v[i] = rnd.Next(100);
+            }
+
+            int x = v[0];
+            int k = 1;
+
+            for (int i = 1; i < n; i++)
+            {
+                if (v[i] == x)
+                    k++;
+                else
+                {
+                    Console.Write(x + "[" + k + "]" + " ");
+                    k = 1;
+                }
+                x = v[i];
+            }
+            Console.WriteLine();
         }
 
         private static void SumaCifre()
