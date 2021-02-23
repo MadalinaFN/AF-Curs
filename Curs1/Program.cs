@@ -11,7 +11,7 @@ namespace Curs1
         static Random rnd = new Random();
         static void Main(string[] args)
         {
-            Palindrom();
+            //Palindrom();
             SumaCifre();
             DeCateOriApare();
             PuteriNrPerfectePrime();
@@ -35,7 +35,58 @@ namespace Curs1
 
         private static void SumaCifre()
         {
-            
+            int n = int.Parse(Console.ReadLine());
+            int[] v = new int[n];
+            int[] r = new int[2 * n];
+
+            for (int i = 0; i < n; i++)
+            {
+                v[i] = int.Parse(Console.ReadLine());
+                //v[i] = rnd.Next(100);
+            }
+            int k = 0;
+            for (int i = 0; i < n; i++)
+            {
+                r[k] = v[i];
+                k++;
+                if (prime (v[i]))
+                {
+                    r[k] = sumacif(v[i]);
+                    k++;
+                }
+            }
+            for (int i = 0; i < k; i++)
+            {
+                Console.WriteLine(r[i] + " ");
+            }
+            Console.WriteLine();
+        }
+
+        static int sumacif (int n)
+        {
+            int tor = 0;
+            while (n != 0)
+            {
+                tor += n % 10;
+                n /= 10;
+            }
+            return tor;
+        }
+
+        static bool prime(int n)
+        {
+            if (n < 2) return false;
+            if (n == 2) return true;
+            if (n % 2 == 0) return false;
+
+            for (int i = 3; i * i <= n; i += 2)
+            {
+                if (n % i == 0)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private static void Palindrom()
