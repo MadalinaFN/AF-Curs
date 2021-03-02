@@ -10,7 +10,37 @@ namespace Curs2
     {
         static void Main(string[] args)
         {
-            kvalori();
+            //kvalori();
+            CifreComune();
+        }
+
+        private static void CifreComune()
+        {
+            int n1 = 2777134, n2 = 1115727789;
+
+            bool[] v1 = new bool[10];
+            bool[] v2 = new bool[10];
+
+            while (n1 != 0)
+            {
+                v1[n1 % 10] = true;
+                n1 /= 10;
+            }
+
+            while (n2 != 0)
+            {
+                v2[n2 % 10] = true;
+                n2 /= 10;
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                if (v1[i] && v2[i])
+                {
+                    Console.Write($"{i} ");
+                }
+            }
+            Console.WriteLine();
         }
 
         static Random rnd = new Random();
