@@ -14,18 +14,6 @@ namespace Curs1
             //Palindrom();
             //SumaCifre();
             //DeCateOriApare();
-            PuteriNrPerfectePrime();
-            KValoriMari();
-        }
-
-        private static void KValoriMari()
-        {
-            
-        }
-
-        private static void PuteriNrPerfectePrime()
-        {
-            
         }
 
         private static void DeCateOriApare()
