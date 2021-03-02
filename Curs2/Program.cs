@@ -11,7 +11,60 @@ namespace Curs2
         static void Main(string[] args)
         {
             //kvalori();
-            CifreComune();
+            //CifreComune();
+            CelMaiMareSiCelMaiMic();
+        }
+
+        private static void CelMaiMareSiCelMaiMic()
+        {
+            ulong n = 828952000111;
+            int[] v = new int[10];
+
+            while (n != 0)
+            {
+                v[n % 10]++;
+                n /= 10;
+            }
+
+            ulong torMax = 0;
+            for (int i = 9; i >= 0; i--)
+            {
+                if (v[i] != 0)
+                {
+                    for (int j = 0; j < v[i]; j++)
+                    {
+                        torMax = torMax * 10 + (ulong)i;
+                    }
+                }
+            }
+            Console.Write(torMax);
+            Console.WriteLine();
+
+            ulong torMin = 0;
+
+            if (v[0] != 0)
+            {
+                int idx = 1;
+                while (v[idx] == 0)
+                {
+                    idx++;
+                }
+                torMin = (ulong)idx;
+                v[idx]--;
+            }
+            
+            for (int i = 0; i <= 9; i++)
+            {
+                if (v[i] != 0)
+                {
+                    for (int j = 0; j < v[i]; j++)
+                    {
+                        torMin = torMin * 10 + (ulong)i;
+                    }
+                }
+            }
+            Console.Write(torMin);
+            Console.WriteLine();
         }
 
         private static void CifreComune()
