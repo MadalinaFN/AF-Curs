@@ -12,6 +12,38 @@ namespace Curs3
         {
             //MatricePatratica();
             //PatratConcentric();
+            //ValoriMinime();
+        }
+
+        private static void ValoriMinime()
+        {
+            int n = 5, m = 7, max = 0;
+            int[,] a = new int[n, m];
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    a[i, j] = rnd.Next(10);
+                }
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                int min = a[i, 0];
+                for (int j = 1; j < m; j++)
+                {
+                    if (a[i,j] < min)
+                    {
+                        min = a[i, j];
+                    }
+                }
+                if (min > max)
+                {
+                    max = min;
+                }
+            }
+            Console.WriteLine(max);
         }
 
         static Random rnd = new Random();
