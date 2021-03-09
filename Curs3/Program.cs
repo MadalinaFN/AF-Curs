@@ -14,6 +14,41 @@ namespace Curs3
             //PatratConcentric();
             //ValoriMinime();
             //ConstruimMatrice();
+            //MatricePat();
+        }
+
+        private static void MatricePat()
+        {
+            int n = 1234567, nrc = 0;
+            int[] v = new int[10];
+
+            while (n != 0)
+            {
+                v[nrc] = n % 10;
+                nrc++;
+                n /= 10;
+            }
+
+            int[,] a = new int[nrc, nrc];
+
+            for (int i = 0; i < nrc; i++)
+            {
+                for (int j = 0; j < nrc; j++)
+                {
+                    a[i, j] = v[j];
+                    //a[i, j] = v[nrc - j - 1]; //invers
+                    //a[i, j] = v[nrc - i - 1]; //pe linie
+                }
+            }
+
+            for (int i = 0; i < nrc; i++)
+            {
+                for (int j = 0; j < nrc; j++)
+                {
+                    Console.Write($"{a[i, j]} ");
+                }
+                Console.WriteLine();
+            }
         }
 
         private static void ConstruimMatrice()
