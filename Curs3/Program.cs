@@ -13,6 +13,48 @@ namespace Curs3
             //MatricePatratica();
             //PatratConcentric();
             //ValoriMinime();
+            //ConstruimMatrice();
+        }
+
+        private static void ConstruimMatrice()
+        {
+            int n = 6;
+            int[,] a = new int[n, n];
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    bool[] v = new bool[n * n];
+                    for (int k = 0; k < n * n; k++)
+                    {
+                        v[k] = false;
+                    }
+                    for (int k = 0; k < i; k++)
+                    {
+                        v[a[k, j]] = true;
+                    }
+                    for (int k = 0; k < j; k++)
+                    {
+                        v[a[i, k]] = true;
+                    }
+                    int idx = 0;
+                    while (v[idx] == true)
+                    {
+                        idx++;
+                    }
+                    a[i, j] = idx;
+                }
+            }
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    Console.Write($"{a[i, j]} ");
+                }
+                Console.WriteLine();
+            }
         }
 
         private static void ValoriMinime()
