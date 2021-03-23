@@ -14,6 +14,40 @@ namespace Curs5
 
         }
 
+        int cmmdc(int a, int b)
+        {
+            while (a != b)
+            {
+                if (a < b)
+                {
+                    b -= a;
+                }
+                if (b < a)
+                {
+                    a -= b;
+                }
+            }
+            return a;
+        }
+        int cmmdcr(int a, int b)
+        {
+            while (b != 0)
+            {
+                int r = a % b;
+                a = b;
+                b = r;
+            }
+            return a;
+        }
+        int cmmdcrr(int a, int b)
+        {
+            if (b == 0)
+            {
+                return a;
+            }
+            return cmmdcrr(b, a % b);
+        }
+
         private static void Fibonacci()
         {
             Console.WriteLine(fib(6));
