@@ -10,12 +10,36 @@ namespace Curs5
     {
         static void Main(string[] args)
         {
-            Fibonacci();
+            //Fibonacci();
+
         }
 
         private static void Fibonacci()
         {
             Console.WriteLine(fib(6));
+        }
+
+        static int fibt (int n)
+        {
+            if (n == 0)
+            {
+                return 0;
+            }
+            if (n == 1)
+            {
+                return 1;
+            }
+            else
+            {
+                int[] v = new int[n + 1];
+                v[0] = 0;
+                v[1] = 1;
+                for (int i = 2; i < n; i++)
+                {
+                    v[i] = v[i - 1] + v[i - 2];
+                }
+                return v[n];
+            }
         }
 
         static int fib(int n)
