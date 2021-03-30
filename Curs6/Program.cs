@@ -68,9 +68,78 @@ namespace Curs6
             }
         }
 
+        static int nr;
+        static bool found1, found2;
+        public static void pa1(int i, int j)
+        {
+            if (i >= 0 && j >= 0 && i < n && j < m && !b[i, j])
+            {
+                if (a[i, j] == 0)
+                {
+                    //Console.Write("0");
+                    nr++;
+                    b[i, j] = true;
+                    pa1(i - 1, j);
+                    pa1(i, j + 1);
+                    pa1(i + 1, j);
+                    pa1(i, j - 1);
+                }
+                else
+                {
+                    if (a[i, j] == 1)
+                    {
+                        found1 = true;
+                    }
+                    if (a[i, j] == 2)
+                    {
+                        found2 = true;
+                    }
+                }
+            }
+        }
+
         static void Main(string[] args)
         {
-            DrumDe1();
+            //DrumDe1();
+            VeciniDe2SiDe1();
+        }
+
+        private static void VeciniDe2SiDe1()
+        {
+            int nr1 = 0;
+            int nr2 = 0;
+            int nrn = 0;
+            load(@"..\..\TextFile2.txt");
+            view();
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    if (a[i, j] == 0 && !b[i, j])
+                    {
+                        nr = 0;
+                        found1 = false;
+                        found2 = false;
+                        pa1(i, j);
+                        if (found1 && !found2)
+                        {
+                            nr1 += nr;
+                        }
+                        if (!found1 && found2)
+                        {
+                            nr2 += nr;
+                        }
+                        if (found1 && found2)
+                        {
+                            nrn += nr;
+                        }
+                        //Console.WriteLine(nr);
+                    }
+                }
+            }
+            Console.WriteLine($"T1: {nr1}");
+            Console.WriteLine($"T2: {nr2}");
+            Console.WriteLine($"TN: {nrn}");
         }
 
         private static void DrumDe1()
