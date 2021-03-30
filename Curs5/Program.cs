@@ -11,7 +11,6 @@ namespace Curs5
         static void Main(string[] args)
         {
             //Fibonacci();
-
         }
 
         int cmmdc(int a, int b)
