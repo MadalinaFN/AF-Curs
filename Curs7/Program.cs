@@ -155,11 +155,32 @@ namespace Curs7
             }
         }
 
+        static void combinari1(int k, int n, int p, int[] sol)
+        {
+            if (k > p)
+            {
+                for (int i = 0; i < p; i++)
+                {
+                    Console.Write(sol[i]);
+                }
+                Console.WriteLine();
+            }
+            else
+            {
+                for (int i = sol[k - 1] + 1; i <= n; i++)
+                {
+
+                    sol[k] = i;
+                    combinari1(k + 1, n, p, sol);
+                }
+            }
+        }
+
         private static void Backtracking()
         {
             int n = int.Parse(Console.ReadLine());
             int p = int.Parse(Console.ReadLine());
-            int[] v = new int[n];
+            //int[] v = new int[n];
             bool[] vis = new bool[n];
 
             //back(0, n, v);
@@ -171,7 +192,10 @@ namespace Curs7
             }
             //permutari(0, n, v, vis);
             //aranjamente(0, n, p, v, vis);
-            combinari(0, n, p, v, vis);
+            //combinari(0, n, p, v, vis);
+            int[] v = new int[n + 1];
+            v[0] = 0;
+            combinari1(1, n, p, v);
         }
     }
 }
