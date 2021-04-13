@@ -93,8 +93,34 @@ namespace Curs7
             }
         }
 
+        static void aranjamente(int k, int n, int p, int[] sol, bool[] vis)
+        {
+            if (k >= p)
+            {
+                for (int i = 0; i < p; i++)
+                {
+                    Console.Write(sol[i]);
+                }
+                Console.WriteLine();
+            }
+            else
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    if (!vis[i])
+                    {
+                        vis[i] = true;
+                        sol[k] = i + 1;
+                        aranjamente(k + 1, n, p, sol, vis);
+                        vis[i] = false;
+                    }
+                }
+            }
+        }
+
         private static void Backtracking()
         {
+            int p = 4;
             int n = int.Parse(Console.ReadLine());
             int[] v = new int[n];
             bool[] vis = new bool[n];
@@ -104,7 +130,8 @@ namespace Curs7
             {
                 vis[i] = false;
             }
-            permutari(0, n, v, vis);
+            //permutari(0, n, v, vis);
+            aranjamente(0, n, p, v, vis);
         }
     }
 }
