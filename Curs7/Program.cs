@@ -118,20 +118,60 @@ namespace Curs7
             }
         }
 
+        static void combinari(int k, int n, int p, int[] sol, bool[] vis)
+        {
+            if (k >= p)
+            {
+                bool ok = true;
+                for (int i = 0; i < p - 1; i++)
+                {
+                    if (sol[i] > sol[i+1])
+                    {
+                        ok = false;
+                        break;
+                    }
+                }
+                if (ok)
+                {
+                    for (int i = 0; i < p; i++)
+                    {
+                        Console.Write(sol[i]);
+                    }
+                    Console.WriteLine();
+                }
+            }
+            else
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    if (!vis[i])
+                    {
+                        vis[i] = true;
+                        sol[k] = i + 1;
+                        combinari(k + 1, n, p, sol, vis);
+                        vis[i] = false;
+                    }
+                }
+            }
+        }
+
         private static void Backtracking()
         {
-            int p = 4;
             int n = int.Parse(Console.ReadLine());
+            int p = int.Parse(Console.ReadLine());
             int[] v = new int[n];
             bool[] vis = new bool[n];
+
             //back(0, n, v);
             //back1(0, n, v);
+
             for (int i = 0; i < n; i++)
             {
                 vis[i] = false;
             }
             //permutari(0, n, v, vis);
-            aranjamente(0, n, p, v, vis);
+            //aranjamente(0, n, p, v, vis);
+            combinari(0, n, p, v, vis);
         }
     }
 }
