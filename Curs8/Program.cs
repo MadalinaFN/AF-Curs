@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Curs8
 {
     public class Queue
     {
-        public int[] v;
+        nod[] v;
         public int n;
         
         public Queue()
@@ -16,10 +17,10 @@ namespace Curs8
             n = 0;
         }
 
-        public void push(int value)
+        public void push(nod value)
         {
             n++;
-            int[] t = new int[n];
+            nod[] t = new nod[n];
             for (int i = 0; i < n - 1; i++)
             {
                 t[i + 1] = v[i];
@@ -28,11 +29,11 @@ namespace Curs8
             v = t;
         }
 
-        public int pop()
+        public nod pop()
         {
-            int tor = v[n - 1];
+            nod tor = v[n - 1];
             n--;
-            int[] t = new int[n];
+            nod[] t = new nod[n];
             for (int i = 0; i < n; i++)
             {
                 t[i] = v[i];
@@ -153,11 +154,99 @@ namespace Curs8
             Console.WriteLine();
         }
     }
+    public class nod
+    {
+        public int l, c, v;
+
+        public nod(int l, int c, int v)
+        {
+            this.l = l;
+            this.v = v;
+            this.c = c;
+        }
+        public void view()
+        {
+            Console.Write(l + " " + c + " " + v + " ");
+        }
+    }
     public class Program
     {
+        static int[,] a;
+        static int n, m;
+
+        static void load()
+        {
+            TextReader load = new StreamReader(@"..\..\matrix.in");
+            string buffer = load.ReadLine();
+            n = int.Parse(buffer.Split(' ')[0]);
+            m = int.Parse(buffer.Split(' ')[1]);
+            a = new int[n, m];
+            for (int i = 0; i < n; i++)
+            {
+                string[] local_s = (load.ReadLine()).Split(' ');
+                for (int j = 0; j < m; j++)
+                {
+                    a[i, j] = int.Parse(local_s[j]);
+                }
+            }
+        }
+        static void view()
+        {
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    Console.Write(a[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+        }
+        static void Lee()
+        {
+            Queue D = new Queue();
+            a[0, 0] = 1;
+            D.push(new nod(0, 0, 1));
+
+            while (D.n != 0)
+            {
+                nod t = D.pop();
+                if (t.l - 1 >= 0)
+                {
+                    if (a[t.l - 1, t.c] == 0)
+                    {
+                        a[t.l - 1, t.c] = t.v + 1;
+                        D.push(new nod(t.l - 1, t.c, t.v + 1));
+                    }
+                }
+                if (t.c + 1 < m)
+                {
+                    if (a[t.l, t.c + 1] == 0)
+                    {
+                        a[t.l, t.c + 1] = t.v + 1;
+                        D.push(new nod(t.l, t.c + 1, t.v + 1));
+                    }
+                }
+                if (t.l + 1 < n)
+                {
+                    if (a[t.l + 1, t.c] == 0)
+                    {
+                        a[t.l + 1, t.c] = t.v + 1;
+                        D.push(new nod(t.l + 1, t.c, t.v + 1));
+                    }
+                }
+                if (t.c - 1 >= 0)
+                {
+                    if (a[t.l, t.c - 1] == 0)
+                    {
+                        a[t.l, t.c - 1] = t.v + 1;
+                        D.push(new nod(t.l, t.c - 1, t.v + 1));
+                    }
+                }
+            }
+        }
         static void Main(string[] args)
         {
-            Queue A = new Queue();
+            /*Queue A = new Queue();
             A.push(1);
             A.push(2);
             A.push(3);
@@ -210,7 +299,13 @@ namespace Curs8
                     }
                 }
             }
-            C.viewLine();
+            C.viewLine();*/
+
+            load();
+            view();
+            Console.WriteLine();
+            Lee();
+            view();
         }
     }
 }
