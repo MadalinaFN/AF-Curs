@@ -12,6 +12,7 @@ namespace Curs10
         {
             //FactoriPrimi();
             //FactoriPrimi1();
+
         }
 
         private static void FactoriPrimi1()
