@@ -10,7 +10,29 @@ namespace Curs10
     {
         static void Main(string[] args)
         {
-            FactoriPrimi();
+            //FactoriPrimi();
+            //FactoriPrimi1();
+        }
+
+        private static void FactoriPrimi1()
+        {
+            Console.Write(nrfp(90));
+            Console.WriteLine();
+        }
+        static int nrfp(int n)
+        {
+            int max = 0;
+            int poz = 0;
+            for (int i = 1; i <= n; i++)
+            {
+                int tmp = fp(i);
+                if (max < tmp)
+                {
+                    max = tmp;
+                    poz = i;
+                }
+            }
+            return poz;
         }
 
         private static void FactoriPrimi()
@@ -31,7 +53,7 @@ namespace Curs10
                 while (x % d == 0)
                 {
                     x /= d;
-                    Console.Write(d + " ");
+                    //Console.Write(d + " ");
                 }
                 if (d == 2)
                 {
