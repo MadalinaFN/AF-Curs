@@ -11,7 +11,50 @@ namespace Curs11
     {
         static void Main(string[] args)
         {
-            NumereMaiMariPanaLa100();
+            //NumereMaiMariPanaLa100();
+            ProblemaMatrice();
+            NumereDivizibileCu5();
+        }
+
+        private static void NumereDivizibileCu5()
+        {
+            
+        }
+
+        private static void ProblemaMatrice()
+        {
+            int n1 = int.Parse(Console.ReadLine());
+            bool[] v1 = new bool[21];
+
+            int n2 = int.Parse(Console.ReadLine());
+            bool[] v2 = new bool[21];
+
+            int[,] a = new int[n1, n2];
+
+            for (int i = 0; i < n1; i++)
+            {
+                for (int j = 0; j < n2; j++)
+                {
+                    a[i, j] = int.Parse(Console.ReadLine());
+                }
+            }
+
+            for (int i = 1; i < n1; i++)
+            {
+                v2[a[i, n2 - 1]] = true;
+            }
+            for (int i = 0; i < n2 - 1; i++)
+            {
+                v1[a[0, i]] = true;
+            }
+            for (int i = 0; i < 21; i++)
+            {
+                if (v1[i] && v2[i])
+                {
+                    Console.Write(i + " ");
+                }
+            }
+            Console.WriteLine();
         }
 
         private static void NumereMaiMariPanaLa100()
