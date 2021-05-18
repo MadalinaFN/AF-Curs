@@ -12,13 +12,118 @@ namespace Curs11
         static void Main(string[] args)
         {
             //NumereMaiMariPanaLa100();
-            ProblemaMatrice();
+            //ProblemaMatrice();
             NumereDivizibileCu5();
         }
 
         private static void NumereDivizibileCu5()
         {
-            
+            TextReader load1 = new StreamReader(@"..\..\TextFile2.txt");
+            string[] buffer1 = load1.ReadLine().Split(' ');
+
+            int[] v1 = new int[buffer1.Length];
+            int n1 = 0;
+
+            foreach (string s in buffer1)
+            {
+                v1[n1] = int.Parse(buffer1[n1]);
+                n1++;
+            }
+
+            TextReader load2 = new StreamReader(@"..\..\TextFile3.txt");
+            string[] buffer2 = load2.ReadLine().Split(' ');
+
+            int[] v2 = new int[buffer2.Length];
+            int n2 = 0;
+
+            foreach (string s in buffer2)
+            {
+                v2[n2] = int.Parse(buffer2[n2]);
+                n2++;
+            }
+
+            int[] v3 = new int[n1 + n2];
+            int k1 = 0;
+            int k2 = 0;
+            int k3 = 0;
+
+            while (k1 < n1 && k2 < n2)
+            {
+                if (v1[k1] < v2[k2])
+                {
+                    if (v1[k1] % 5 == 0 && !isf(v1[k1], v2))
+                    {
+                        v3[k3] = v1[k1];
+                        k3++;
+                    }
+                    k1++;
+                }
+                else
+                {
+                    if (v2[k2] % 5 == 0 && !isf(v2[k2], v1))
+                    {
+                        v3[k3] = v2[k2];
+                        k3++;
+                    }
+                    k2++;
+                }
+            }
+            while (k1 < n1)
+            {
+                if (v1[k1] % 5 == 0 && !isf(v1[k1], v2))
+                {
+                    v3[k3] = v1[k1];
+                    k3++;
+                }
+                k1++;
+            }
+            while (k2 < n2 && !isf(v2[k2], v1))
+            {
+                if (v2[k2] % 5 == 0)
+                {
+                    v3[k3] = v2[k2];
+                    k3++;
+                }
+                k2++;
+            }
+
+            /*for (int i = 0; i < n1; i++)
+            {
+                v3[i] = v1[i];
+            }
+            for (int i = 0; i < n2; i++)
+            {
+                v3[n1 + i] = v2[i];
+            }
+            for (int i = 0; i < n1 + n2 - 1; i++)
+            {
+                for (int j = i + 1; j < n1 + n2; j++)
+                {
+                    if (v3[i] > v3[j])
+                    {
+                        int aux = v3[i];
+                        v3[i] = v3[j];
+                        v3[j] = aux;
+                    }
+                }
+            }*/
+
+            for (int i = 0; i < k3; i++)
+            {
+                Console.Write(v3[i] + " ");
+            }
+            Console.WriteLine();
+        }
+        private static bool isf(int x, int[] v)
+        {
+            for (int i = 0; i < v.Length; i++)
+            {
+                if (x == v[i])
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         private static void ProblemaMatrice()
