@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Curs12
 {
@@ -11,7 +12,35 @@ namespace Curs12
         static void Main(string[] args)
         {
             //ProblemaMatrice();
+            TermenPrecedent();
+        }
 
+        private static void TermenPrecedent()
+        {
+            string n = "2";
+            string k = "3";
+            string result = load(@"..\..\TextFile1.txt");
+            Console.Write(n + " " + k + " ");
+            for (int i = 1; i <= 5; i++)
+            {
+                string aux = k + n;
+                if (aux == result)
+                {
+                    break;
+                }
+                Console.Write(aux + " ");
+                n = k;
+                k = aux;
+            }
+            Console.WriteLine();
+        }
+        static string load (string filename)
+        {
+            using(StreamReader sr = new StreamReader(filename))
+            {
+                string buffer = sr.ReadLine();
+                return buffer;
+            }
         }
 
         private static void ProblemaMatrice()
@@ -75,7 +104,6 @@ namespace Curs12
             int size = 0;
             for (int i = 0; i < arr.Length; i++)
                 frecv[arr[i]]++;
-            int j = 0;
             for (int i = 999; i >= 0; i--)
                 if (frecv[i] != 0)
                 {
